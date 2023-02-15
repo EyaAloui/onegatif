@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Donneur index{% endblock %}
+
+{% block body %}
+    <h1>Donneur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Tel</th>
+                <th>Region</th>
+                <th>Cin</th>
+                <th>Groupesanguin</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for donneur in donneurs %}
+            <tr>
+                <td>{{ donneur.id }}</td>
+                <td>{{ donneur.nom }}</td>
+                <td>{{ donneur.prenom }}</td>
+                <td>{{ donneur.email }}</td>
+                <td>{{ donneur.password }}</td>
+                <td>{{ donneur.tel }}</td>
+                <td>{{ donneur.region }}</td>
+                <td>{{ donneur.cin }}</td>
+                <td>{{ donneur.groupesanguin }}</td>
+                <td>
+                    <a href="{{ path('app_donneur_show', {'id': donneur.id}) }}">show</a>
+                    <a href="{{ path('app_donneur_edit', {'id': donneur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_donneur_new') }}">Create new</a>
+{% endblock %}
